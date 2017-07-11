@@ -1,6 +1,6 @@
 {
   "name": "styled-shortcuts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A props shortcut helper for styled-components.",
   "main": "./lib/index.js",
   "scripts": {
