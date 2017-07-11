@@ -27,10 +27,17 @@ $ npm i --save styled-shortcuts
 
 Here's the beauty... There's only one function!
 `withStyledShortcuts` is a HOC that you use to wrap an Styled Component tagged template literal function.
-You can wrap `styled.div`, `styled(MyComponent)`, anything.
+You can wrap `styled.div`, `styled(MyComponent)`, anything. Even `styled.div.attrs()`!
 
-## Usage:
+## Usage
 
+Any template string value is assumed to be a `props` key.
+For example, `${'color'}` will return the `prop` named `color`.
+Your can also assign a "unit" suffix. It can be anything, such as `px`, `%`, `em`, etc.
+Simply separate the unit from the prop key with a colon.
+For example `${'width:px'}` will return the `width` prop with the "px" suffix.
+
+See this example below:
 ```js
 import styled from 'styled-components';
 import withStyledShortcuts from 'styled-shortcuts';
