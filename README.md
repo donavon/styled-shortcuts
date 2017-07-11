@@ -5,22 +5,29 @@
 
 TL;DR
 
-* Provides convenient unit property helper functions that go hand-in-hand with
+* Provides convenient props shortcut helper for
 [`styled-components`](https://www.npmjs.com/package/styled-components) 💅
 * Small footprint with **No Dependencies**!
+* Use any unit (e.g. `px`, `%`, `cm`, you name it) or no unit at all (e.g. `red`).
 * For example, instead of doing this:
   ```js
-  width: ${({ percent }) => `${percent}%`};
+  font-size: ${({ fontSize }) => `${fontSize}px`};
   ```
   you do this:
   ```js
-  width: ${'percent:%'};
+  font-size: ${'fontSize:%'};
   ```
 
 ## Install
 ```bash
 $ npm i --save styled-shortcuts
 ```
+
+## API
+
+Here's the beauty... There's only one function!
+`withStyledShortcuts` is a HOC that you use to wrap an Styled Component tagged template literal function.
+You can wrap `styled.div`, `styled(MyComponent)`, anything.
 
 ## Usage:
 
@@ -47,12 +54,6 @@ Then use it like this.
 ```js
 <Button borderRadius={5} padding={3}>Press Me</Button>
 ```
-
-## API
-
-Here's the beauty... There's only one function!
-`withStyledShortcuts` is a HOC that you use to wrap an Styled Component tagged template literal function.
-You can wrap `styled.div`, `styled(MyComponent)`, anything.
 
 ## Live
 
