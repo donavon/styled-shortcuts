@@ -5,6 +5,7 @@ const styled = () => mock;
 styled.foo = 'bar';
 styled.div = mock;
 styled.div.attrs = () => mock;
+
 const wrappedStyled = withStyledShortcuts(styled);
 
 describe('withStyledShortcuts', () => {
@@ -73,10 +74,7 @@ const testStyled = (mockStyled) => {
 };
 
 describe('The new wrapped object', () => {
-  test('is named "styledShortcuts"', () => {
-    expect(wrappedStyled.name).toBe('styledShortcuts');
-  });
-  test('has the proper non-function propertied', () => {
+  test('has the correct properties', () => {
     expect(wrappedStyled.foo).toBe('bar');
   });
 

@@ -19,22 +19,19 @@ const withStyledShortcuts = styled => (
   }
 );
 
+const withStyledShortcutsFunction = styled => (...args) => (
+  withStyledShortcuts(styled(...args))
+);
+
 const wrapStyled = (styled) => {
-  const styledShortcuts = (...args) => (
-    withStyledShortcuts(styled(...args)) // styled(Component)
-  );
+  const styledShortcuts = withStyledShortcutsFunction(styled); // styled(Component)
 
   Object.keys(styled).forEach((key) => {
-    const hasOwnProperty = Object.prototype.hasOwnProperty.call(styled, key);
-    if (hasOwnProperty) {
-      if (typeof styled[key] === 'function') { // styled.div, etc?
-        styledShortcuts[key] = withStyledShortcuts(styled[key]);
-        styledShortcuts[key].attrs = (...args) => (
-          withStyledShortcuts(styled[key].attrs(...args))
-        );
-      } else {
-        styledShortcuts[key] = styled[key]; // copy over non functions
-      }
+    if (typeof styled[key] === 'function' && styled[key].attrs) { // styled.div
+      styledShortcuts[key] = withStyledShortcuts(styled[key]);
+      styledShortcuts[key].attrs = withStyledShortcutsFunction(styled[key].attrs);
+    } else {
+      styledShortcuts[key] = styled[key];
     }
   });
 
