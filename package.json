@@ -1,6 +1,6 @@
 {
   "name": "styled-shortcuts",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A props shortcut helper for styled-components.",
   "main": "./lib/index.js",
   "scripts": {
@@ -47,10 +47,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
+        "statements": 90,
+        "branches": 90,
+        "functions": 88,
+        "lines": 100
       }
     }
   }
