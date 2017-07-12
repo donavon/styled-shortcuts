@@ -1,6 +1,6 @@
 {
   "name": "styled-shortcuts",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A props shortcut helper for styled-components.",
   "main": "./lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "_build": "babel src --out-dir lib --ignore '**/*.test.js'",
     "test": "npm run lint && npm run _test",
     "_test": "jest",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "lint": "eslint src"
   },
   "repository": {
@@ -47,9 +47,9 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 90,
-        "branches": 90,
-        "functions": 88,
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
         "lines": 100
       }
     }

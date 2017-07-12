@@ -16,7 +16,7 @@ TL;DR
   ```js
   font-size: ${({ fontSize }) => `${fontSize}px`};
   ```
-* Use any unit (e.g. `px`, `%`, `cm`, you name it) or no unit at all (e.g. `red`).
+* Use any unit (e.g. `px`, `%`, `cm`, you name it) or no unit at all.
 
 ## Install
 ```bash
