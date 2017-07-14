@@ -1,4 +1,4 @@
-import withStyledShortcuts from '.';
+import withStyledShortcuts from './';
 
 const mock = (strings, ...values) => ({ strings, values });
 const styled = () => mock;
