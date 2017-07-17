@@ -5,6 +5,7 @@
 
 TL;DR
 
+* Now with **Theme Support**!
 * Provides convenient props shortcut helper for
 [Styled Components](https://www.npmjs.com/package/styled-components) 💅
 * Small footprint with **No Dependencies**!
@@ -78,6 +79,21 @@ Button.defaultProps = {
   color: 'red',
 };
 ```
+
+## Using with Themes
+
+You can specify a props key that contains a dotted object notation.
+
+For example:
+```js
+const Button = styled.button`
+	padding: 0.25em 1em;
+	border-radius: ${'theme.button.borderRadius:px'};
+	color: ${'theme.color'};
+	border: 2px solid ${'theme.color'};
+`;
+See the [Styled Components documentation](https://www.styled-components.com/docs/advanced#theming)
+for complete details on how to enable theming.
 
 ## Do It Live!
 
