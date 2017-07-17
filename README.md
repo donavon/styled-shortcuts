@@ -92,6 +92,7 @@ const Button = styled.button`
 	color: ${'theme.color'};
 	border: 2px solid ${'theme.color'};
 `;
+```
 See the [Styled Components documentation](https://www.styled-components.com/docs/advanced#theming)
 for complete details on how to enable theming.
 
