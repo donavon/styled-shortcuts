@@ -57,6 +57,20 @@ const testStyled = (mockStyled) => {
     const prop = fn({ bar: 'baz' });
     expect(prop).toBe('bazunit');
   });
+  test('calling one of these functions with dotted props, will return correct prop', () => {
+    const strings = ['foo'];
+    const data = mockStyled(strings, 'a.b');
+    const fn = data.values[0];
+    const prop = fn({ a: { b: 'c' } });
+    expect(prop).toBe('c');
+  });
+  test('calling one of these functions with dotted props, will return correct prop (w/units)', () => {
+    const strings = ['foo'];
+    const data = mockStyled(strings, 'a.b:unit');
+    const fn = data.values[0];
+    const prop = fn({ a: { b: 'c' } });
+    expect(prop).toBe('cunit');
+  });
   test('calling one of these functions with props, will return correct prop (num w/units)', () => {
     const strings = ['foo'];
     const data = mockStyled(strings, 'bar:unit');
