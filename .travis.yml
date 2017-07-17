@@ -4,3 +4,10 @@ node_js:
   - "6"
 script: npm run posttest
 after_success: npm run coveralls
+notifications:
+  email:
+    on_failure: change
+cache:
+  bundler: true
+  directories:
+    - node_modules
