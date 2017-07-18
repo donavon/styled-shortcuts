@@ -27,27 +27,24 @@ $ npm i --save styled-shortcuts
 ## API
 
 Here's the beauty... There's only one function!
-Styled Shortcut provides a higher order function that you use to wrap Styled Components.
-
-The most convenient thing to do it to create a `styled.js` in your project.
-The change your components to `import` from `./styled`
-instead of `styled-components`.
+Styled Shortcut provides a higher order function that you use to wrap Styled Components, like this:
 
 ```js
-// styled.js
-import styled from 'styled-components';
+import rawStyled from 'styled-components';
 import shortcuts from 'styled-shortcuts';
 
-export default shortcuts(styled);
+const styled = shortcuts(rawStyled);
 ```
 
-```js
-// MyHeaderComponent.js
-import styled from './styled';
+And to make everyone's life easier, there's now a package that does this for you.
+In fact, it is a direct replacement for `styled-components`.
+It imports both `styled-components` and `styled-shortcuts` and exports the wrapped `styled`.
 
-export default styled.h1`
-  color: ${'color'};
-`;
+All you have to do is make a one-line change your components to `import` from `styled-shortcut-components`
+instead of `styled-components`.
+```js
+// import styled from 'styled-components';
+import styled from 'styled-shortcut-components';
 ```
 
 ## Usage
@@ -60,10 +57,7 @@ For example `${'width:px'}` will return the `width` prop with the "px" suffix.
 
 See this example below:
 ```js
-import rawStyled from 'styled-components';
-import withShortcuts from 'styled-shortcuts';
-
-const styled = withShortcuts(rawStyled);
+import styled from 'styled-shortcut-components';
 
 const Button = styled.button`
   padding: ${'padding:em'};
@@ -87,10 +81,10 @@ You can specify a props key that contains a dotted object notation.
 For example:
 ```js
 const Button = styled.button`
-	padding: 0.25em 1em;
-	border-radius: ${'theme.button.borderRadius:px'};
-	color: ${'theme.color'};
-	border: 2px solid ${'theme.color'};
+  padding: 0.25em 1em;
+  border-radius: ${'theme.button.borderRadius:px'};
+  color: ${'theme.color'};
+  border: 2px solid ${'theme.color'};
 `;
 ```
 See the [Styled Components documentation](https://www.styled-components.com/docs/advanced#theming)
