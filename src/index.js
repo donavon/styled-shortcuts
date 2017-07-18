@@ -2,14 +2,9 @@ const appendUnit = (value, unit) => (
   value ? `${value}${unit}` : '0'
 );
 
-const getPropValue = (obj, keys) => {
-  const [key, balance] = keys.split(/\.(.+)/);
-  const value = obj[key];
-  if (balance) {
-    return getPropValue(value, balance);
-  }
-  return value;
-};
+const getPropValue = (props, keys) => (
+  keys.split('.').reduce((obj, key) => obj[key], props)
+);
 
 const mapStringTemplateToGetter = (value) => {
   if (typeof value === 'string') {
