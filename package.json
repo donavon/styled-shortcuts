@@ -4,7 +4,7 @@
   "description": "A props shortcut helper for styled-components.",
   "main": "./lib/index.js",
   "scripts": {
-    "prepublish": "npm run lint && npm run _build && npm run _test",
+    "prepublishOnly": "npm run lint && npm run _build && npm run _test",
     "build": "npm run lint && npm run _build",
     "_build": "babel src --out-dir lib --ignore '**/*.test.js'",
     "test": "npm run lint && npm run _test",
@@ -29,8 +29,12 @@
     "url": "https://github.com/donavon/styled-shortcuts/issues"
   },
   "homepage": "https://github.com/donavon/styled-shortcuts#readme",
+  "dependencies": {
+    "styled-transform-proxy": "^0.0.10"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-eslint": "^8.2.3",
     "babel-preset-es2015": "^6.24.1",
     "coveralls": "^2.13.1",
     "cowsay": "^1.1.9",
@@ -40,6 +44,9 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
     "jest": "^20.0.4"
+  },
+  "peerDependencies": {
+    "styled-components": "^2.0.0 || ^3.0.0"
   },
   "jest": {
     "verbose": true,
