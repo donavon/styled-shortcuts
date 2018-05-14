@@ -1,10 +1,15 @@
 import withStyledShortcuts from './';
 
+const TEMPLATE_FACTORY_FN_NAMES = ['attrs', 'withConfig'];
+
 const mock = (strings, ...values) => ({ strings, values });
+
+TEMPLATE_FACTORY_FN_NAMES.forEach((fnName) => {
+  mock[fnName] = () => mock;
+});
+
 const styled = () => mock;
-styled.foo = 'bar';
 styled.div = mock;
-styled.div.attrs = () => mock;
 
 const wrappedStyled = withStyledShortcuts(styled);
 
@@ -19,6 +24,9 @@ describe('withStyledShortcuts', () => {
 });
 
 const testStyled = (mockStyled) => {
+  test('is a function', () => {
+    expect(typeof mockStyled).toBe('function');
+  });
   test('calling that function returns { [strings], [values] }', () => {
     const strings = ['foo'];
     const data = mockStyled(strings, 'bar');
@@ -87,23 +95,29 @@ const testStyled = (mockStyled) => {
   });
 };
 
+const testTemplateFactoryFns = (mockStyled) => {
+  TEMPLATE_FACTORY_FN_NAMES.forEach((fnName) => {
+    const templateFn = mockStyled[fnName]();
+    const chainedTemplateFn = templateFn[fnName]();
+
+    describe(`has \`${fnName}()\` function that returns a template function`, () => {
+      testStyled(templateFn);
+    });
+
+    describe(`has \`${fnName}()\` function that is chainable`, () => {
+      testStyled(chainedTemplateFn);
+    });
+  });
+};
+
 describe('The new wrapped object', () => {
-  test('has the correct properties', () => {
-    expect(wrappedStyled.foo).toBe('bar');
+  describe('Wrapping a Component ie: wrappedStyled(Component)', () => {
+    testStyled(wrappedStyled());
+    testTemplateFactoryFns(wrappedStyled());
   });
 
-  describe('Wrapping a Component ie: wrappedStyled(Component)', () => {
-    testStyled(wrappedStyled({}));
-  });
   describe('A pre-defined HTML element ie: wrappedStyled.div', () => {
     testStyled(wrappedStyled.div);
-
-    test('has an attrs function', () => {
-      expect(typeof wrappedStyled.div).toBe('function');
-    });
-
-    describe('Calling attrs() returns a function ie: wrappedStyled.div.attrs()', () => {
-      testStyled(wrappedStyled.div.attrs({}));
-    });
+    testTemplateFactoryFns(wrappedStyled.div);
   });
 });
